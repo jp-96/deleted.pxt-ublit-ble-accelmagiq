@@ -23,7 +23,7 @@ namespace codal
    * Class definition for a MicroBit BLE Accelerometer Service.
    * Provides access to live accelerometer data via Bluetooth, and provides basic configuration options.
    */
-  class MicroBitAccelerometerService : public MicroBitBLEService
+  class QuaternionEstimatorService : public MicroBitBLEService
   {
   public:
     /**
@@ -31,7 +31,7 @@ namespace codal
      * Create a representation of the AccelerometerService
      * @param _accelerometer An instance of MicroBitAccelerometer.
      */
-    MicroBitAccelerometerService(BLEDevice &_ble, codal::Accelerometer &_accelerometer);
+    QuaternionEstimatorService(BLEDevice &_ble, codal::Accelerometer &_accelerometer);
 
   private:
     /**
@@ -62,13 +62,13 @@ namespace codal
     /**
      * Accelerometer update callback
      */
-    void accelerometerUpdate(MicroBitEvent e);
+    void quaternionEstimatorUpdate(MicroBitEvent e);
 
     codal::Accelerometer &accelerometer;
 
     // memory for our 8 bit control characteristics.
-    uint16_t accelerometerDataCharacteristicBuffer[3];
-    uint16_t accelerometerPeriodCharacteristicBuffer;
+    uint16_t quaternionEstimatorDataCharacteristicBuffer[3];
+    uint16_t quaternionEstimatorPeriodCharacteristicBuffer;
 
     // Index for each charactersitic in arrays of handles and UUIDs
     typedef enum mbbs_cIdx
