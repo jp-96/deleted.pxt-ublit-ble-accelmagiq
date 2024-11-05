@@ -1,5 +1,6 @@
 #include "pxt.h"
 #include "customlib.h"
+#include "lib/AccelMagiQService.h"
 
 namespace custom
 {
@@ -17,6 +18,14 @@ namespace custom
     int baz()
     {
         return (int)customlib::getDeviceRuntime() + 5;
+    }
+
+    AccelMagiQService* _pService = NULL;
+
+    //%
+    void startService() {
+        if (NULL != _pService) return;
+        _pService = new AccelMagiQService();
     }
 
 }

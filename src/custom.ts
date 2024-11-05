@@ -41,5 +41,17 @@ namespace custom {
         // implementation for simulator
         return DEVICE_RUNTIME.RUNTIME_SIMU + 5;
     }
+    
+    /**
+     * Start and advertise the S3Link BLE Service.
+     */
+    //% weight=40
+    //% blockId=s3linkudk_start_service
+    //% block="UDK start service"
+    //% shim=custom::startService
+    export function startService(): void {
+        // Block definition only.
+        return;
+    }
 
 }
