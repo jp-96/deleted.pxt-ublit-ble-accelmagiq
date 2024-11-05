@@ -5,7 +5,7 @@
 #ifndef QUATERNION_ESTIMATOR_SERVICE_DAL_H
 #define QUATERNION_ESTIMATOR_SERVICE_DAL_H
 
-#if !MICROBIT_CODAL
+// #if !MICROBIT_CODAL
 
 #include "MicroBitConfig.h"
 #include "ble/BLE.h"
@@ -60,6 +60,6 @@ class MicroBitAccelerometerService
     GattAttribute::Handle_t accelerometerPeriodCharacteristicHandle;
 };
 
-#endif // !MICROBIT_CODAL
+// #endif // !MICROBIT_CODAL
 
 #endif // QUATERNION_ESTIMATOR_SERVICE_DAL_H

@@ -2,7 +2,7 @@
  * https://github.com/lancaster-university/microbit-dal/blob/master/source/bluetooth/MicroBitAccelerometerService.cpp
  */
 
-#if !MICROBIT_CODAL
+// #if !MICROBIT_CODAL
 
 /**
   * Class definition for the custom MicroBit Accelerometer Service.
@@ -101,4 +101,4 @@ const uint8_t  MicroBitAccelerometerServicePeriodUUID[] = {
     0xe9,0x5d,0xfb,0x24,0x25,0x1d,0x47,0x0a,0xa0,0x62,0xfa,0x19,0x22,0xdf,0xa9,0xa8
 };
 
-#endif // !MICROBIT_CODAL
+// #endif // !MICROBIT_CODAL

@@ -2,7 +2,7 @@
  * 
  */
 
-#if MICROBIT_CODAL
+//#if MICROBIT_CODAL
 
 /**
   * Class definition for the custom MicroBit Accelerometer Service.
@@ -10,7 +10,7 @@
   */
 #include "MicroBitConfig.h"
 
-#if CONFIG_ENABLED(DEVICE_BLE)
+// #if CONFIG_ENABLED(DEVICE_BLE)
 
 #include "MicroBitAccelerometerService.h"
 
@@ -133,6 +133,6 @@ void MicroBitAccelerometerService::accelerometerUpdate(MicroBitEvent)
     }
 }
 
-#endif // CONFIG_ENABLED(DEVICE_BLE)
+// #endif // CONFIG_ENABLED(DEVICE_BLE)
 
-#endif // MICROBIT_CODAL
+// #endif // MICROBIT_CODAL

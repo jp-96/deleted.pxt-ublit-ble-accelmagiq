@@ -6,11 +6,11 @@
 #ifndef QUATERNION_ESTIMATOR_SERVICE_CODAL_H
 #define QUATERNION_ESTIMATOR_SERVICE_CODAL_H
 
-#if MICROBIT_CODAL
+// #if MICROBIT_CODAL
 
 #include "MicroBitConfig.h"
 
-#if CONFIG_ENABLED(DEVICE_BLE)
+// #if CONFIG_ENABLED(DEVICE_BLE)
 
 #include "MicroBitBLEManager.h"
 #include "MicroBitBLEService.h"
@@ -96,8 +96,8 @@ class MicroBitAccelerometerService : public MicroBitBLEService
 
 } // namespace codal
 
-#endif // CONFIG_ENABLED(DEVICE_BLE)
+// #endif // CONFIG_ENABLED(DEVICE_BLE)
 
-#endif // MICROBIT_CODAL
+// #endif // MICROBIT_CODAL
 
 #endif // QUATERNION_ESTIMATOR_SERVICE_CODAL_H
