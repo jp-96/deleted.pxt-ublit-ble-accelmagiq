@@ -45,30 +45,16 @@ public:
      */
     AccelMagiQService();
 
-    /**
-     * Periodic callback from MicroBit scheduler.
-     * (MicroBitComponent(=CodalComponent))
-     */
-    virtual void idleCallback();
-
 private:
     // BLE wrapper methods.
-    bool getGapStateConnected();
-    void sendRxCharValue(const uint8_t *data, const uint16_t length);
+    void notifyQuaternionData();
 
-protected:
-    /**
-     * Callback. Invoked when any of our attributes are written via BLE.
-     */
-    void onDataWritten(const microbit_ble_evt_write_t *params);
-
-private:
+  private:
     // Index for each charactersitic in arrays of handles and UUIDs
     typedef enum mbbs_cIdx
     {
-        mbbs_cIdxRxChar,
-        mbbs_cIdxTxChar,
-        mbbs_cIdxCOUNT
+      mbbs_cIdxDATA,
+      mbbs_cIdxCOUNT
     } mbbs_cIdx;
 
     // UUIDs for our service and characteristics
@@ -80,7 +66,7 @@ private:
     // Data for each characteristic when they are held by Soft Device.
     MicroBitBLEChar chars[mbbs_cIdxCOUNT];
 
-public:
+  public:
     int characteristicCount() { return mbbs_cIdxCOUNT; };
     MicroBitBLEChar *characteristicPtr(int idx) { return &chars[idx]; };
 };
@@ -93,6 +79,10 @@ public:
 
 #include "ble/BLE.h"
 
+// UUIDs for our service and characteristics
+extern const uint8_t ServiceUUID[];
+extern const uint8_t QuaternionDataUUID[];
+
 class AccelMagiQService : public AccelMagiQServiceBase
 {
 
@@ -102,34 +92,16 @@ public:
      */
     AccelMagiQService();
 
-    /**
-     * Periodic callback from MicroBit idle thread.
-     * (MicroBitComponent)
-     */
-    virtual void idleTick();
-
 private:
     // BLE wrapper methods.
-    bool getGapStateConnected();
-    void sendRxCharValue(const uint8_t *data, const uint16_t length);
+    void notifyQuaternionData();
 
 private:
-    /**
-     * Callback. Invoked when any of our attributes are written via BLE.
-     */
-    void onDataWritten(const GattWriteCallbackParams *params);
+  // Bluetooth stack we're running on.
+  BLEDevice &ble;
 
-    // Bluetooth stack we're running on.
-    BLEDevice &ble;
-
-    // Handles to access each characteristic when they are held by Soft Device.
-    GattAttribute::Handle_t rxCharHandle;
-    GattAttribute::Handle_t txCharHandle;
-
-    // UUIDs for our service and characteristics
-    static const uint16_t serviceUUID;
-    static const uint8_t rxCharUUID[16];
-    static const uint8_t txCharUUID[16];
+  // Handles to access each characteristic when they are held by Soft Device.
+  GattAttribute::Handle_t quaternionDataCharacteristicHandle;
 };
 
 #endif // MICROBIT_CODAL
