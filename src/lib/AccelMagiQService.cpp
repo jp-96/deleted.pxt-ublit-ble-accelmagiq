@@ -42,25 +42,25 @@ AccelMagiQService::AccelMagiQService()
     RegisterBaseUUID(char_base_uuid);
     CreateCharacteristic(
         mbbs_cIdxDATA, charUUID[mbbs_cIdxDATA],
-        (uint8_t *)quaternionDataCharacteristicBuffer,
-        sizeof(quaternionDataCharacteristicBuffer), sizeof(quaternionDataCharacteristicBuffer),
+        (uint8_t *)dataBuffer,
+        sizeof(dataBuffer), sizeof(dataBuffer),
         microbit_propREAD | microbit_propNOTIFY);
 
     // Default values.
     writeChrValue(
         mbbs_cIdxDATA,
-        (const uint8_t *)&quaternionDataCharacteristicBuffer,
-        sizeof(quaternionDataCharacteristicBuffer));
+        (const uint8_t *)&dataBuffer,
+        sizeof(dataBuffer));
 }
 
-void AccelMagiQService::notifyQuaternionData()
+void AccelMagiQService::notifyData()
 {
     if (getConnected())
     {
         notifyChrValue(
             mbbs_cIdxDATA,
-            (uint8_t *)quaternionDataCharacteristicBuffer,
-            sizeof(quaternionDataCharacteristicBuffer));
+            (uint8_t *)dataBuffer,
+            sizeof(dataBuffer));
     }
 }
 
@@ -87,43 +87,43 @@ AccelMagiQService::AccelMagiQService() : ble(*uBit.ble)
 {
 
     // Create the data structures that represent each of our characteristics in Soft Device.
-    GattCharacteristic quaternionDataCharacteristic(
-        QuaternionDataUUID,
-        (uint8_t *)quaternionDataCharacteristicBuffer, 0, sizeof(quaternionDataCharacteristicBuffer),
+    GattCharacteristic dataChar(
+        DataCharUUID,
+        (uint8_t *)dataBuffer, 0, sizeof(dataBuffer),
         GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_READ | GattCharacteristic::BLE_GATT_CHAR_PROPERTIES_NOTIFY);
 
     // Set default security requirements
-    quaternionDataCharacteristic.requireSecurity(SecurityManager::MICROBIT_BLE_SECURITY_LEVEL);
+    dataChar.requireSecurity(SecurityManager::MICROBIT_BLE_SECURITY_LEVEL);
 
-    GattCharacteristic *characteristics[] = {&quaternionDataCharacteristic};
+    GattCharacteristic *chars[] = {&dataChar};
     GattService service(
         ServiceUUID,
-        characteristics, sizeof(characteristics) / sizeof(GattCharacteristic *));
+        chars, sizeof(chars) / sizeof(GattCharacteristic *));
 
     ble.addService(service);
 
-    quaternionDataCharacteristicHandle = quaternionDataCharacteristic.getValueHandle();
+    dataHandle = dataChar.getValueHandle();
 
     ble.gattServer().write(
-        quaternionDataCharacteristicHandle,
-        (uint8_t *)quaternionDataCharacteristicBuffer, sizeof(quaternionDataCharacteristicBuffer));
+        dataHandle,
+        (uint8_t *)dataBuffer, sizeof(dataBuffer));
 }
 
-void AccelMagiQService::notifyQuaternionData()
+void AccelMagiQService::notifyData()
 {
     if (ble.getGapState().connected)
     {
         ble.gattServer().notify(
-            quaternionDataCharacteristicHandle,
-            (uint8_t *)quaternionDataCharacteristicBuffer,
-            sizeof(quaternionDataCharacteristicBuffer));
+            dataHandle,
+            (uint8_t *)dataBuffer,
+            sizeof(dataBuffer));
     }
 }
 
 const uint8_t ServiceUUID[] = {
     0xe9, 0x5d, 0x07, 0x53, 0x25, 0x1d, 0x47, 0x0a, 0xa0, 0x62, 0xfa, 0x19, 0x22, 0xdf, 0xa9, 0xa8};
 
-const uint8_t QuaternionDataUUID[] = {
+const uint8_t DataCharUUID[] = {
     0xe9, 0x5d, 0xca, 0x4b, 0x25, 0x1d, 0x47, 0x0a, 0xa0, 0x62, 0xfa, 0x19, 0x22, 0xdf, 0xa9, 0xa8};
 
 #endif // MICROBIT_CODAL

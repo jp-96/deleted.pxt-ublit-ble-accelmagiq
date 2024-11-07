@@ -28,17 +28,17 @@ SOFTWARE.
 AccelMagiQServiceBase::AccelMagiQServiceBase()
 {
     // Initialise our characteristic values.
-    quaternionDataCharacteristicBuffer[0] = 10000;
-    quaternionDataCharacteristicBuffer[1] = 0;
-    quaternionDataCharacteristicBuffer[2] = 0;
-    quaternionDataCharacteristicBuffer[3] = 0;
+    dataBuffer[0] = 10000;
+    dataBuffer[1] = 0;
+    dataBuffer[2] = 0;
+    dataBuffer[3] = 0;
 }
 
 void AccelMagiQServiceBase::quaternionUpdate(const int16_t w10000, const int16_t x10000, const int16_t y10000, const int16_t z10000)
 {
-    quaternionDataCharacteristicBuffer[0] = w10000;
-    quaternionDataCharacteristicBuffer[1] = x10000;
-    quaternionDataCharacteristicBuffer[2] = y10000;
-    quaternionDataCharacteristicBuffer[3] = z10000;
-    notifyQuaternionData();
+    dataBuffer[0] = w10000;
+    dataBuffer[1] = x10000;
+    dataBuffer[2] = y10000;
+    dataBuffer[3] = z10000;
+    notifyData();
 }

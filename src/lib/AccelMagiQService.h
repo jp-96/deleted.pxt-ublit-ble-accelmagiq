@@ -47,7 +47,7 @@ public:
 
 private:
     // BLE wrapper methods.
-    void notifyQuaternionData();
+    void notifyData();
 
   private:
     // Index for each charactersitic in arrays of handles and UUIDs
@@ -81,7 +81,7 @@ private:
 
 // UUIDs for our service and characteristics
 extern const uint8_t ServiceUUID[];
-extern const uint8_t QuaternionDataUUID[];
+extern const uint8_t DataCharUUID[];
 
 class AccelMagiQService : public AccelMagiQServiceBase
 {
@@ -94,14 +94,14 @@ public:
 
 private:
     // BLE wrapper methods.
-    void notifyQuaternionData();
+    void notifyData();
 
 private:
   // Bluetooth stack we're running on.
   BLEDevice &ble;
 
   // Handles to access each characteristic when they are held by Soft Device.
-  GattAttribute::Handle_t quaternionDataCharacteristicHandle;
+  GattAttribute::Handle_t dataHandle;
 };
 
 #endif // MICROBIT_CODAL

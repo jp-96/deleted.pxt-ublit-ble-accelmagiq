@@ -40,11 +40,11 @@ public:
 
 protected:
   // memory for our 8 bit control characteristics.
-  uint16_t quaternionDataCharacteristicBuffer[4];
+  uint16_t dataBuffer[4];
 
 private:
   // BLE wrapper methods.
-  virtual void notifyQuaternionData() = 0;
+  virtual void notifyData() = 0;
 };
 
 #endif // ACCELMAGIQ_SERVICE_BASE_H
