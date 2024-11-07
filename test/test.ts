@@ -1,20 +1,27 @@
 /**
  * tests go here; this will not be compiled when this package is used as an extension.
  */
-// bar
+bluetooth.onBluetoothConnected(function () {
+    basic.showIcon(IconNames.Yes)
+})
+bluetooth.onBluetoothDisconnected(function () {
+    basic.showIcon(IconNames.Happy)
+})
 input.onButtonPressed(Button.A, function () {
-    a = custom.bar()
+    custom.notifyData(
+    12345,
+    -12345,
+    1,
+    -1
+    )
 })
-// baz
 input.onButtonPressed(Button.B, function () {
-    a = custom.baz()
+    custom.sendQuatArray([
+    0,
+    1,
+    2,
+    3
+    ])
 })
-let a = 0
-a = -1
-basic.showString("B")
-basic.forever(function () {
-    if (0 <= a) {
-        basic.showNumber(a)
-    }
-    basic.pause(100)
-})
+custom.startService()
+basic.showIcon(IconNames.Heart)
