@@ -1,22 +1,23 @@
 #include "pxt.h"
-#include "customlib.h"
+#include "lib/AccelMagiQService.h"
 
 namespace custom
 {
-    /**
-     * Block definition from C++, no implementation for simulator
-     * https://makecode.com/simshim
-     */
-    //% block
-    int bar()
+    AccelMagiQService *_pService = NULL;
+
+    //%
+    void startService()
     {
-        return (int)customlib::getDeviceRuntime();
+        if (NULL != _pService)
+            return;
+        _pService = new AccelMagiQService();
     }
 
     //%
-    int baz()
+    void notifyData(int w10000, int x10000, int y10000, int z10000)
     {
-        return (int)customlib::getDeviceRuntime() + 5;
+        startService();
+        _pService->quaternionUpdate(w10000, x10000, y10000, z10000);
     }
 
 }

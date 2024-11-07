@@ -1,26 +1,25 @@
 {
     "name": "pxt-ubit-extension",
-    "version": "0.1.0-alpha",
+    "version": "0.1.0",
     "description": "(description: this description is written in pxt.json)",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "bluetooth": "*"
     },
     "files": [
-        "README.md",
-        "enums.d.ts",
-        "shims.d.ts",
+        "src/lib/AccelMagiQServiceBase.h",
+        "src/lib/AccelMagiQServiceBase.cpp",
+        "src/lib/AccelMagiQService.h",
+        "src/lib/AccelMagiQService.cpp",
         "src/custom.ts",
         "src/custom.cpp",
-        "src/customlib.h",
-        "src/customlib.cpp"
+        "enums.d.ts",
+        "shims.d.ts",
+        "README.md"
     ],
     "testFiles": [
         "test/test.ts"
     ],
-    "targetVersions": {
-        "target": "6.0.17",
-        "targetId": "microbit"
-    },
     "supportedTargets": [
         "microbit"
     ],
