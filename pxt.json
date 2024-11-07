@@ -1,6 +1,6 @@
 {
     "name": "pxt-ubit-extension",
-    "version": "0.1.0-alpha",
+    "version": "0.1.0",
     "description": "(description: this description is written in pxt.json)",
     "dependencies": {
         "core": "*",
