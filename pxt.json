@@ -13,8 +13,6 @@
         "src/lib/AccelMagiQService.cpp",
         "src/custom.ts",
         "src/custom.cpp",
-        "src/customlib.h",
-        "src/customlib.cpp",
         "enums.d.ts",
         "shims.d.ts",
         "README.md"

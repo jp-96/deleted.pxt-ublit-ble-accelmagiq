@@ -19,39 +19,28 @@ enum MyEnum {
 //% block="Custom Blocks"
 //% weight=100 color=#696969 icon="\uf1b2"
 namespace custom {
-    /**
-     * TODO: describe your function here
-     * @param n describe parameter here, eg: 5
-     * @param s describe parameter here, eg: "Hello"
-     * @param e describe parameter here
-     */
-    //% block
-    export function foo(n: number, s: string, e: MyEnum): void {
-        // Add code here
-    }
 
-    /**
-     * Using C++ in addition to the simulator implementation
-     * Read more at https://makecode.com/simshim
-     * @returns device runtime
-     */
     //% block
-    //% shim=custom::baz
-    export function baz(): number {
-        // implementation for simulator
-        return DEVICE_RUNTIME.RUNTIME_SIMU + 5;
-    }
-    
-    /**
-     * Start and advertise the S3Link BLE Service.
-     */
-    //% weight=40
-    //% blockId=s3linkudk_start_service
-    //% block="UDK start service"
     //% shim=custom::startService
     export function startService(): void {
-        // Block definition only.
         return;
     }
 
+    //% block
+    //% shim=custom::notifyData
+    export function notifyData(w10000: number, x10000: number, y10000: number, z10000: number): void {
+        return;
+    }
+
+    //% block
+    export function sendQuatArray(q: number[]): void {
+        if (4 != q.length) {
+            return;
+        }
+        const w10000 = 10000 * q[0];
+        const x10000 = 10000 * q[1];
+        const y10000 = 10000 * q[2];
+        const z10000 = 10000 * q[3];
+        notifyData(w10000, x10000, y10000, z10000);
+    }
 }
