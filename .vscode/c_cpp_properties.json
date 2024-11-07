@@ -6,7 +6,7 @@
                 "${workspaceFolder}/src/**"
             ],
             "defines": [
-                "CODAL_CONFIG_H"
+                "MICROBIT_CODAL"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
