@@ -23,5 +23,19 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "tsprj",
+    "yotta": {
+        "userConfigs": [
+            {
+                "description": "Reset Bluetooth Enabled",
+                "config": {
+                    "microbit-dal": {
+                        "bluetooth": {
+                            "enabled": 1
+                        }
+                    }
+                }
+            }
+        ]
+    }
 }
